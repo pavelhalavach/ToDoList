@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <servlet>
+    <servlet-name>MainServlet</servlet-name>
+    <servlet-class>MainServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/main</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetAllServlet</servlet-name>
+        <servlet-class>GetAllServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAllServlet</servlet-name>
+        <url-pattern>/list-of-tasks</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetOne</servlet-name>
+        <jsp-file>/GetOne.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetOne</servlet-name>
+        <url-pattern>/task-info</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetOneServlet</servlet-name>
+        <servlet-class>GetOneServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetOneServlet</servlet-name>
+        <url-pattern>/task-info-given</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Insert</servlet-name>
+        <jsp-file>/Insert.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Insert</servlet-name>
+        <url-pattern>/new-task</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InsertServlet</servlet-name>
+        <servlet-class>InsertServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertServlet</servlet-name>
+        <url-pattern>/new-task-done</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Delete</servlet-name>
+        <jsp-file>/Delete.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Delete</servlet-name>
+        <url-pattern>/task-removal</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>DeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/task-removal-done</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>Update</servlet-name>
+        <jsp-file>/Update.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Update</servlet-name>
+        <url-pattern>/task-update</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateServlet</servlet-name>
+        <servlet-class>UpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateServlet</servlet-name>
+        <url-pattern>/task-update-done</url-pattern>
+    </servlet-mapping>
+</web-app>
