@@ -38,7 +38,6 @@ public class DBMethods {
 //                list.setAttach(resultSet.getBytes("attach"));
 //                list.setDueDate(resultSet.getDate("dueDate"));
 //                list.setCreatedAt(resultSet.getDate("createdAt"));
-
                 items.add(list);
             }
             return items;
@@ -46,7 +45,7 @@ public class DBMethods {
             throw new RuntimeException(e);
         }
     }
-
+// Вывод одной строки из таблицы по названию
     public DBList getOne(String title){
         try (PreparedStatement preparedStatement = worker.getConnection().prepareStatement(GET_ONE)){
             preparedStatement.setString(1, title);
@@ -66,6 +65,7 @@ public class DBMethods {
             throw new RuntimeException(e);
         }
     }
+//    Добавление новой строки в таблицу
     public void insertNew(String title, String desc, String dueDate){
         try (PreparedStatement preparedStatement = worker.getConnection().prepareStatement(INSERT_NEW)){
             preparedStatement.setString(1, title);
@@ -78,7 +78,7 @@ public class DBMethods {
             throw new RuntimeException(e);
         }
     }
-
+// Изменение строки из таблицы по id
     public void update(int id, String title, String desc, String dueDate){
         try (PreparedStatement preparedStatement = worker.getConnection().prepareStatement(UPDATE)){
             preparedStatement.setString(1, title);
@@ -91,7 +91,7 @@ public class DBMethods {
             throw new RuntimeException(e);
         }
     }
-
+// Удаление строки из таблицы
     public void delete(String title){
         try (PreparedStatement preparedStatement = worker.getConnection().prepareStatement(DELETE)){
             preparedStatement.setString(1, title);
