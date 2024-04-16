@@ -45,11 +45,11 @@
     <% DBList list = method.getOne(request.getParameter("title"));%>
     <hr></hr>
     <p>Options you can change:</p>
-        <form action="/task-update-done" method="post">
+        <form action="/task-update-done" method="post" enctype="multipart/form-data">
             <br></br> Id: <input type="text" name = "id" value = '<%=list.getId()%>' readonly/>
             <br></br> Title: <input type="text" name = "title" value = '<%=list.getTitle()%>' required/>
             <br></br> Description: <input type="text" name = "desc" value = '<%=list.getDesc()%>' required/>
-            <br></br> Attachment(пока не работает. не разобрался как файлы сохранять в базе данных): <input type = "file" name = "attach" size = "50" />
+            <br></br> Attachment: <input type = "file" name = "attach"/>
             <br></br> DueDate: <input type="date" name = "dueDate" value="<%=list.getDueDate()%>"/>
             <br></br> <input type="submit"  value="Submit"/>
         </form>

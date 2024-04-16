@@ -7,7 +7,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "UpdateServlet", value = "/UpdateServlet")
+@MultipartConfig
 public class UpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -17,8 +17,9 @@ public class UpdateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DBMethods method = new DBMethods();
+        Part attach = request.getPart("attach");
         method.update(Integer.parseInt(request.getParameter("id")),
-                request.getParameter("title"),request.getParameter("desc"),request.getParameter("dueDate"));
+                request.getParameter("title"),request.getParameter("desc"), attach.getInputStream(),request.getParameter("dueDate"));
         PrintWriter out = response.getWriter();
 
 

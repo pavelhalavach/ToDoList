@@ -15,10 +15,10 @@
         Add
     </h1>
 
-    <form action="/new-task-done" method="post">
+    <form action="/new-task-done" method="post" enctype="multipart/form-data">
         Title: <input type="text" name = "title" required/>
         <br></br> Description: <input type="text" name = "desc" required/>
-        <br></br> Attachment(пока не работает. не разобрался как файлы сохранять в базе данных): <input type = "file" name = "attach" size = "50" />
+        <br></br> Attachment: <input type = "file" name = "attach"/>
         <br></br> DueDate: <input type="date" name = "dueDate"/>
         <br></br> <input type="submit"  value="Submit" />
     </form>

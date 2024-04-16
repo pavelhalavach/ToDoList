@@ -2,15 +2,16 @@ package dbStuff;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DBMethods {
 //    private final static String INSERT_NEW = "INSERT INTO list (title, desc, attach, dueDate, createdAt) VALUES(?,?,?,?,?)";
-    private final static String INSERT_NEW = "INSERT INTO list (title, description, dueDate, createdAt) VALUES(?,?,?,?)";
+    private final static String INSERT_NEW = "INSERT INTO list (title, description, attach, dueDate, createdAt) VALUES(?,?,?,?,?)";
     private final static String GET_ALL = "SELECT * FROM list";
-    private final static String UPDATE = "UPDATE list SET title=?, description=?, dueDate=? WHERE id=?";
+    private final static String UPDATE = "UPDATE list SET title=?, description=?, attach=?, dueDate=? WHERE id=?";
     private final static String GET_ONE = "SELECT * FROM list WHERE title=?";
     private static final String DELETE = "DELETE FROM list WHERE title=?";
     private static final String CREATE_DB = "CREATE DATABASE IF NOT EXISTS `todolist`";
@@ -61,7 +62,9 @@ public class DBMethods {
                 list.setId(resultSet.getInt("id"));
                 list.setTitle(resultSet.getString("title"));
                 list.setDesc(resultSet.getString("description"));
-                list.setAttach(resultSet.getBytes("attach"));
+                InputStream attach = resultSet.getBinaryStream("attach");
+
+                list.setAttach(attach);
                 list.setDueDate(resultSet.getDate("dueDate"));
                 list.setCreatedAt(resultSet.getDate("createdAt"));
             }
@@ -72,26 +75,26 @@ public class DBMethods {
         }
     }
 //    Добавление новой строки в таблицу
-    public void insertNew(String title, String desc, String dueDate){
+    public void insertNew(String title, String desc, InputStream attach, String dueDate){
         try (PreparedStatement preparedStatement = worker.getConnection().prepareStatement(INSERT_NEW)){
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, desc);
-//            preparedStatement.setBlob(3, new FileInputStream(name));
-            preparedStatement.setDate(3, Date.valueOf(dueDate));
-            preparedStatement.setDate(4, new Date(Calendar.getInstance().getTimeInMillis()));
+            preparedStatement.setBlob(3, attach);
+            preparedStatement.setDate(4, Date.valueOf(dueDate));
+            preparedStatement.setDate(5, new Date(Calendar.getInstance().getTimeInMillis()));
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 // Изменение строки из таблицы по id
-    public void update(int id, String title, String desc, String dueDate){
+    public void update(int id, String title, String desc, InputStream attach, String dueDate){
         try (PreparedStatement preparedStatement = worker.getConnection().prepareStatement(UPDATE)){
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, desc);
-//            preparedStatement.setBlob(3, new FileInputStream(name));
-            preparedStatement.setDate(3, Date.valueOf(dueDate));
-            preparedStatement.setInt(4, id);
+            preparedStatement.setBlob(3, attach);
+            preparedStatement.setDate(4, Date.valueOf(dueDate));
+            preparedStatement.setInt(5, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

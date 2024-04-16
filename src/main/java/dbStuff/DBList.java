@@ -1,11 +1,12 @@
 package dbStuff;
+import java.io.InputStream;
 import java.sql.*;
 
 public class DBList {
     private int id;
     private String title;
     private String desc;
-    private byte[] attach;
+    private InputStream attach;
     private Date dueDate;
 
     @Override
@@ -30,11 +31,11 @@ public class DBList {
         this.dueDate = dueDate;
     }
 
-    public byte[] getAttach() {
+    public InputStream getAttach() {
         return attach;
     }
 
-    public void setAttach(byte[] attach) {
+    public void setAttach(InputStream attach) {
         this.attach = attach;
     }
 
