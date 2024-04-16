@@ -4,5 +4,6 @@
 3) Add new task to the ToDoList
 4) Update the selected task
 5) Delete the selected task
+   
    All information is stored and retrieved in database with such columns as id, title, description, attachment, dueDate and createdAt.
    
